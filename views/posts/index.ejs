@@ -9,7 +9,6 @@
       <%- include("../partials/header") %>
     </header>
 
-
     <section class="section">
       <div class="container">
         <div class="level">
@@ -21,35 +20,17 @@
             </div>
           </div>
         </div>
-        <div class="box">
-          <p>
-            <strong>This is a super strong title of the post</strong>
-            <br/>
-            <small>Abbas Siddiqi</small> <small>|</small> <small>Aug 12, 2008</small>
-            <br />
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <span>&hellip;</span> <a href="/posts/3">Read More</a>
-          </p>
-        </div>
-
-        <div class="box">
-          <p>
-            <strong>This is a super strong title of the post</strong>
-            <br/>
-            <small>Abbas Siddiqi</small> <small>|</small> <small>Aug 12, 2008</small>
-            <br />
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <span>&hellip;</span> <a href="/posts/4">Read More</a>
-          </p>
-        </div>
-
-        <div class="box">
-          <p>
-            <strong>This is a super strong title of the post</strong>
-            <br/>
-            <small>Abbas Siddiqi</small> <small>|</small> <small>Aug 12, 2008</small>
-            <br />
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <span>&hellip;</span> <a href="/posts/5">Read More</a>
-          </p>
-        </div>
+        <% posts.forEach( (post) => { %>
+          <div class="box">
+            <p>
+              <strong><%- post.title %></strong>
+              <br/>
+              <small><%- post._creator.username %></small> . <small><%- post.createdAt.toDateString() %></small>
+              <br />
+              <%- post.text %> <span>&hellip;</span> <a href="/posts/<%- post._id %>">Read More</a>
+            </p>
+          </div>
+        <% }); %>
 
         <div class="pagination">
           <a class="pagination-previous" title="This is a first page" disabled>Previous</a>

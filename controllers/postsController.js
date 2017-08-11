@@ -2,18 +2,21 @@ import db from '../models';
 const postsController = {};
 
 postsController.show = (req, res) => {
-  const {
-    postId
-  } = req.body;
+  const postId = req.params.postId;
 
-  const post = db.Post.find({
-    _id: postId
+  const post = db.Post.findById(postId).populate({
+    path: '_creator',
+    select: "username -_id"
   })
-  .then( (posts) => {
-    res.render("posts/show",{posts});
+  .populate({
+    'path': '_comments'
+  })
+  .then( (post ) => {
+    // res.status(200).json(post);
+    res.render("posts/show", { post });
   })
   .catch( (err) => {
-    res.render("posts/show", {errMessage: err});
+    res.render("posts/show", {errMessage: err, post: null});
   });
 }
 
@@ -24,9 +27,10 @@ postsController.create = (req, res) => {
 postsController.store = (req, res) => {
   let {
     title,
-    text,
-    userId
+    text
   } = req.body;
+
+  const userId = "596e00b6a8b8ed2298da784f";
 
   const post = new db.Post({
     title,
@@ -36,10 +40,7 @@ postsController.store = (req, res) => {
 
   post.save()
     .then( (newPost) => {
-      res.status(200).json({
-        success: true,
-        data: newPost
-      });
+      res.redirect("/posts");
     })
     .catch( (err) => {
       res.status(500).json({

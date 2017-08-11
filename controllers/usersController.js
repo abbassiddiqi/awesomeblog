@@ -8,7 +8,7 @@ usersController.signup = (req, res) => {
 usersController.register = (req, res) => {
 
   console.log('Trying to register');
-  
+
   let {
     username,
     password
@@ -31,6 +31,10 @@ usersController.register = (req, res) => {
 usersController.login = (req, res) => {
   console.log('showing the login form');
   res.render('auth/login');
+}
+
+usersController.logout = (req, res) => {
+  res.redirect('/login');
 }
 
 usersController.authenticate = (req, res) => {

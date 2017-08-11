@@ -1,11 +1,13 @@
+import db from '../models';
 const commentsController = {};
 
 commentsController.store = (req, res) => {
   const {
-    text,
-    userId,
-    postId
+    text
   } = req.body;
+
+  const userId = "596e00b6a8b8ed2298da784f";
+  const postId = req.params.postId;
 
   const comment = new db.Comment({
     text,
@@ -19,11 +21,7 @@ commentsController.store = (req, res) => {
         postId,
         { $push: { _comments : newComment._id} }
       ).then( (updatedPost) => {
-          res.status(200).json({
-            success: true,
-            data: newComment,
-            updatedPost
-          });
+          res.redirect('back');
       }).catch( (err) => {
           res.status(500).json({
             errMessage: err
