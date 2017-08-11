@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Show Post</title>
+  <%- include("../partials/head") %>
+</head>
+<body>
+
+  <header>
+    <%- include("../partials/header") %>
+  </header>
+
+  <div class="section">
+    <div class="container">
+      <p class="title is-3">This is a super strong title of the post</p>
+      <p class="title is-6">
+        <small>Abbas Siddiqi</small> · <small>Aug 12, 2008</small>
+      </p>
+      <div class="content">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati magnam iusto quas officiis, sint quaerat consequuntur? Ab accusantium, nisi explicabo similique sed delectus earum. Repellat maxime facilis cumque est consectetur.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores repellat, recusandae sed, fugit accusamus quae optio dolores? Architecto voluptate odit, soluta ducimus quas optio voluptatem dolores cum at doloribus eligendi excepturi minima, necessitatibus nostrum hic assumenda, facilis. Iste corporis reiciendis labore, impedit at quos molestiae sapiente sit expedita vitae fugit ut dolore qui ipsum veritatis, incidunt pariatur a? Eligendi ipsam laudantium iure doloribus minima repudiandae cum enim maxime reiciendis in porro, praesentium. Excepturi nesciunt eos incidunt, ipsa earum dignissimos nam.
+        </p>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="container">
+
+      <p class="title is-4">
+        Comments
+      </p>
+
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src="/images/128x128.png" />
+          </figure>
+        </div>
+        <div class="media-content">
+          <form method="post" target="/comments">
+            <div class="field">
+              <div class="control">
+                <textarea class="textarea" placeholder="Add your comment here..."></textarea>
+              </div>
+            </div>
+            <div class="field">
+              <input class="button" type="submit" value="Add Comment" />
+            </div>
+          </form>
+        </div>
+      </article>
+
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src="/images/128x128.png" />
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Abbas Siddiqi</strong>
+              <br />
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, cupiditate quis! Quia illo, tenetur distinctio dolores asperiores saepe praesentium, id corporis quibusdam enim laudantium cumque, porro ad consequatur necessitatibus maiores beatae similique, quam! Distinctio culpa, expedita sunt quidem, in deleniti!
+              <br />
+              <small> <a href="#">Like</a> · <a href="#">Reply</a> · 2 hrs</small>
+            </p>
+          </div>
+        </div>
+        <div class="media-right">
+          <button class="delete"></button>
+        </div>
+      </article>
+
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src="/images/128x128.png" />
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Ryan Dahl</strong>
+              <br />
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, cupiditate quis! Quia illo, tenetur distinctio dolores asperiores saepe praesentium, id corporis quibusdam enim laudantium cumque, porro ad consequatur necessitatibus maiores beatae similique, quam! Distinctio culpa, expedita sunt quidem, in deleniti!
+              <br />
+              <small> <a href="#">Like</a> · <a href="#">Reply</a> · 2 hrs</small>
+            </p>
+          </div>
+        </div>
+        <div class="media-right">
+          <!-- <button class="delete"></button> -->
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+
+
+  <footer class="footer">
+    <%- include("../partials/footer") %>
+  </footer>
+
+</body>
+</html>

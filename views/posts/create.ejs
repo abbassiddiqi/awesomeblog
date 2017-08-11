@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Create Post</title>
+  <%- include("../partials/head") %>
+</head>
+<body>
+  <header>
+    <%- include("../partials/header") %>
+  </header>
+  <section class="section">
+    <div class="container">
+      <p class="title is-3">
+        Create new Post
+      </p>
+      <form method="post" action="/posts/create">
+
+        <div class="field">
+          <div class="control">
+            <label class="label">Title:</label>
+            <input class="input" type="text" name="title" />
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <label class="label">Content:</label>
+            <textarea class="textarea" name="description"></textarea>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <input type="submit" class="button is-primary" value="Create Post" />
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </section>
+  <footer class="footer">
+    <%- include("../partials/footer") %>
+  </footer>
+</body>
+</html>

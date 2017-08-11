@@ -1,0 +1,10 @@
+.Calculator {
+  width: 400px;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #ccc;
+}
+
+.TemperatureInput {
+  margin-bottom: 20px;
+}
