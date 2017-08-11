@@ -12,7 +12,7 @@ import apiRoutes from './apiRoutes';
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/aimenblog',{
+mongoose.connect('mongodb://localhost/awesomeblog',{
   useMongoClient: true
 }).then(
   () => {
