@@ -37,8 +37,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Configure Database here
 
 _mongoose2.default.Promise = global.Promise;
-
-_mongoose2.default.connect('mongodb://localhost/awesomeblog', {
+var mongodbUri = "mongodb://awesomeuser:secretPassword@ds035735.mlab.com:35735/awesomedb";
+// const mongodbUri = "mongodb://localhost/awesomeblog";
+_mongoose2.default.connect(mongodbUri, {
   useMongoClient: true
 }).then(function () {
   console.log('Connected to mongodb via mongoose');
