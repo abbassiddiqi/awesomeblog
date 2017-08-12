@@ -38,7 +38,7 @@ postsController.store = function (req, res) {
       text = _req$body.text;
 
 
-  var userId = "596e00b6a8b8ed2298da784f";
+  var userId = "598f6051349ed38bfda0b3bc";
 
   var post = new _models2.default.Post({
     title: title,

@@ -30,7 +30,7 @@ postsController.store = (req, res) => {
     text
   } = req.body;
 
-  const userId = "596e00b6a8b8ed2298da784f";
+  const userId = "598f6051349ed38bfda0b3bc";
 
   const post = new db.Post({
     title,
