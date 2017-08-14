@@ -11,8 +11,7 @@ import apiRoutes from './apiRoutes';
 // Configure Database here
 
 mongoose.Promise = global.Promise;
-const mongodbUri = "mongodb://awesomeuser:secretPassword@ds035735.mlab.com:35735/awesomedb";
-// const mongodbUri = "mongodb://localhost/awesomeblog";
+const mongodbUri = process.env.MONGODB_URI;
 mongoose.connect(mongodbUri,{
   useMongoClient: true
 }).then(
