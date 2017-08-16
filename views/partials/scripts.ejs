@@ -1,0 +1,19 @@
+<script>
+  console.log("Configuring eventListener");
+  document.querySelectorAll("button.delete").forEach( function(el) {
+    el.addEventListener(
+      "click",
+      function(event) {
+
+        event.preventDefault();
+
+        if(el.parentNode.classList) {
+          el.parentNode.classList.add("is-hidden");
+        } else {
+          el.parentNode.className += " is-hidden"
+        }
+      }
+    );
+  });
+
+</script>

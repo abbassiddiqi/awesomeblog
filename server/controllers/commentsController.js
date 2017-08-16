@@ -6,7 +6,7 @@ commentsController.store = (req, res) => {
     text
   } = req.body;
 
-  const userId = "598f6051349ed38bfda0b3bc";
+  const userId = req.session.user._id;
   const postId = req.params.postId;
 
   const comment = new db.Comment({
@@ -22,15 +22,14 @@ commentsController.store = (req, res) => {
         { $push: { _comments : newComment._id} }
       ).then( (updatedPost) => {
           res.redirect('back');
-      }).catch( (err) => {
-          res.status(500).json({
-            errMessage: err
-          });
+      })
+      .catch( (err) => {
+        req.session.flashMessage = err.message;
+        res.redirect('back');
       });
     }).catch( (err) => {
-      res.status(500).json({
-        errMessage: err
-      });
+      req.session.flashMessage = err.message;
+      res.redirect('back');
     });
 }
 

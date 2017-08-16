@@ -10,6 +10,14 @@
   </header>
   <section class="section">
     <div class="container">
+
+      <% if( typeof flashMessage != "undefined" && flashMessage ) { %>
+      <div class="notification is-danger">
+        <button class="delete"></button>
+        <%- flashMessage %>
+      </div>
+      <% } %>
+
       <p class="title is-3">
         Create new Post
       </p>

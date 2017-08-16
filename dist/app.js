@@ -37,8 +37,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Configure Database here
 
 _mongoose2.default.Promise = global.Promise;
-var mongodbUri = "mongodb://awesomeuser:secretPassword@ds035735.mlab.com:35735/awesomedb";
-// const mongodbUri = "mongodb://localhost/awesomeblog";
+var mongodbUri = process.env.MONGODB_URI;
 _mongoose2.default.connect(mongodbUri, {
   useMongoClient: true
 }).then(function () {

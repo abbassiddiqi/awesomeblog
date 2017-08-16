@@ -30,7 +30,7 @@ postsController.store = (req, res) => {
     text
   } = req.body;
 
-  const userId = "598f6051349ed38bfda0b3bc";
+  const userId = req.session.user._id;
 
   const post = new db.Post({
     title,
@@ -43,9 +43,8 @@ postsController.store = (req, res) => {
       res.redirect("/posts");
     })
     .catch( (err) => {
-      res.status(500).json({
-        errMessage: err
-      });
+      req.session.flashMessage = err.message;
+      res.redirect('back');
     });
 }
 

@@ -6,17 +6,26 @@
   </head>
   <body>
     <header>
-      <%- include("../partials/header") %>
+      <%- include("../partials/header", {user: user}) %>
     </header>
 
     <section class="section">
       <div class="container has-text-centered">
+        <% if( typeof flashMessage != "undefined" && flashMessage ) { %>
+        <div class="notification is-info">
+          <button class="delete"></button>
+          <%- flashMessage %>
+        </div>
+        <% } %>
         <figure class="image" style="width:200px; margin: 0 auto;">
           <img src="/images/chipmunk.png" />
         </figure>
         <br />
         <p>
           Welcome to our Awesome Blog..!
+        </p>
+        <p>
+          <small>You viewed this page <%- pvCount %> times.</small>
         </p>
       </div>
     </section>

@@ -28,33 +28,4 @@ usersController.register = (req, res) => {
     });
 }
 
-usersController.login = (req, res) => {
-  console.log('showing the login form');
-  res.render('auth/login');
-}
-
-usersController.logout = (req, res) => {
-  res.redirect('/login');
-}
-
-usersController.authenticate = (req, res) => {
-
-  console.log('trying to authenticate');
-  const {
-    username,
-    password
-  } = req.body;
-
-  db.User.find({username, password})
-    .then( (result) => {
-      res.status(200).json(result);
-    })
-    .catch( (err) => {
-      res.status(500).json({
-        errMessage: err
-      });
-    });
-};
-
-
 export default usersController;
