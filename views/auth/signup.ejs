@@ -11,9 +11,10 @@
     <div class="section">
       <div class="container">
 
-        <% if( typeof errMessage != "undefined" ) { %>
-        <div class="notification is-danger">
-
+        <% if( typeof flashMessage != "undefined" && flashMessage ) { %>
+        <div class="notification is-info">
+          <button class="delete"></button>
+          <%- flashMessage %>
         </div>
         <% } %>
 
