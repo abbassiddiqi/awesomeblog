@@ -7,8 +7,6 @@ usersController.signup = (req, res) => {
 
 usersController.register = (req, res) => {
 
-  console.log('Trying to register');
-
   let {
     username,
     password
@@ -24,6 +22,7 @@ usersController.register = (req, res) => {
       res.render('auth/registered',{user: newUser});
     })
     .catch( (err) => {
+      res.session.flashMessage = err.message;
       res.render('auth/signup');
     });
 }
