@@ -24,8 +24,8 @@ usersController.register = (req, res) => {
       res.render('auth/registered',{user: newUser});
     })
     .catch( (err) => {
-      res.session.flashMessage = err.message;
-      res.render('auth/signup');
+      req.session.flashMessage = err.message;
+      res.redirect('back');
     });
 }
 

@@ -49,7 +49,7 @@ app.use( express.static( path.join(__dirname,'../public') ) );
 app.use( (req, res, next) => {
 
   if( !req.session )
-    throw Error('No session initialzed');
+    throw Error('No session initialized');
 
   // set views variable
   if( !req.session.views ) {
