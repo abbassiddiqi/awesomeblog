@@ -19,6 +19,8 @@ usersController.register = (req, res) => {
 
   user.save()
     .then( (newUser) => {
+      req.session.user = newUser;
+      delete req.session.user.password;
       res.render('auth/registered',{user: newUser});
     })
     .catch( (err) => {
