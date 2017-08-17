@@ -1,5 +1,17 @@
 <script>
-  console.log("Configuring eventListener");
+
+document.addEventListener("DOMContentLoaded", function(){
+
+  $allNavBurgers = document.querySelectorAll(".navbar-burger");
+  $allNavBurgers.forEach( function($burger) {
+    $burger.addEventListener("click", function(){
+      $targetEl = document.getElementById($burger.dataset.target);
+      $targetEl.classList.toggle('is-active');
+      $burger.classList.toggle('is-active');
+    });
+  });
+
+  // Close the notifications via close button
   document.querySelectorAll("button.delete").forEach( function(el) {
     el.addEventListener(
       "click",
@@ -16,4 +28,5 @@
     );
   });
 
+});
 </script>
