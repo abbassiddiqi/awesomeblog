@@ -22,7 +22,7 @@
             <p>
               <strong><%- post.title %></strong>
               <br/>
-              <small><%- post._creator.username %></small> . <small><%- post.createdAt.toDateString() %></small>
+              <small><%- post._creator.username %></small> . <small><%- moment(post.createdAt).format(shortDateFormat) %></small>
               <br />
               <%- post.text.substring(0,180) %> <span>&hellip;</span> <a href="/posts/<%- post._id %>">Read More</a>
               <br />

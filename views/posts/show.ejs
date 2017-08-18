@@ -22,7 +22,7 @@
           <%- post._creator.username %>
         </small> ·
         <small>
-          <%- post.createdAt.toDateString() %>
+          <%- moment(post.createdAt).format(shortDateFormat) %>
         </small>
       </p>
       <div class="content">
@@ -72,7 +72,7 @@
               <br />
               <%- comment.text %>
               <br />
-              <small> <a href="#">Like</a> · <a href="#">Reply</a> · <%- comment.createdAt.toDateString() %></small>
+              <small> <a href="#">Like</a> · <a href="#">Reply</a> · <%- moment(comment.createdAt).format(shortDateFormat) %></small>
             </p>
           </div>
         </div>

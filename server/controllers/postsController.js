@@ -47,6 +47,8 @@ postsController.store = (req, res) => {
       res.redirect("/posts");
     })
     .catch( (err) => {
+      // console.log(err);
+      // res.status(500).json(err);
       req.session.flashMessage = {
         type: 'error',
         message: err.message

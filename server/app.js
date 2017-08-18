@@ -7,6 +7,7 @@ import session from 'express-session';
 import paginate from 'express-paginate';
 import parseurl from 'parseurl';
 import methodOverride from 'method-override';
+import moment from 'moment';
 
 import routes from './routes';
 import apiRoutes from './apiRoutes';
@@ -48,6 +49,11 @@ app.use( session({
   })
 );
 app.use( express.static( path.join(__dirname,'../public') ) );
+
+// Setting local variables
+
+app.locals.moment = moment;
+app.locals.shortDateFormat = "ddd @ h:mmA";
 
 // Middleware to store page visit counts in session variable
 app.use( (req, res, next) => {
