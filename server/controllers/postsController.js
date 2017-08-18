@@ -1,4 +1,5 @@
 import db from '../models';
+import paginate from 'express-paginate';
 const postsController = {};
 
 postsController.show = (req, res) => {
@@ -57,16 +58,34 @@ postsController.store = (req, res) => {
 postsController.getAll = (req, res) => {
   const posts = [];
 
-  db.Post.find({})
-    .populate({
-        path: '_creator',
-        select: 'username -_id'
+  db.Post.paginate({},{
+      populate: [
+        {
+          path: '_creator',
+          select: 'username -_id'
+        },
+        {
+          path: '_comments'
+        }
+      ],
+      page: req.query.page,
+      limit: req.query.limit
     })
-    .populate({
-      path: '_comments',
-    })
-    .then( (allPosts) => {
-        res.render("posts/index",{posts: allPosts});
+    .then( (posts) => {
+        res.render("posts/index", {
+          posts: posts.docs,
+          pageCount: posts.pages,
+          itemCount: posts.limit,
+          currentPage: req.query.page,
+          pages: paginate.getArrayPages(req)(3, posts.pages, req.query.page)
+        });
+        // res.status(200).json({
+        //   posts: posts.docs,
+        //   pageCount: posts.pages,
+        //   itemCount: posts.limit,
+        //   currentPage: req.query.page,
+        //   pages: paginate.getArrayPages(req)(3, posts.pages, req.query.page)
+        // });
     })
     .catch( (err) => {
       req.session.flashMessage = {

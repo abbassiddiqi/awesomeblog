@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import morgan from 'morgan';
 import session from 'express-session';
+import paginate from 'express-paginate';
 import parseurl from 'parseurl';
 import methodOverride from 'method-override';
 
@@ -39,6 +40,7 @@ app.use( methodOverride('_method') );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: true}) );
 app.use( morgan('dev') );
+app.use( paginate.middleware(3,50) );
 app.use( session({
     secret: 'Lo Dasso',
     resave: false,

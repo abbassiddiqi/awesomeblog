@@ -12,8 +12,8 @@
     <section class="section">
       <div class="container">
         <%- include( "../partials/flashmessage", { flashMessage } ) %>
-        <div class="container">
-          <div class="has-text-right has-text-centered-mobile">
+        <div class="content">
+          <div class="has-text-centered has-text-right-tablet">
             <a class="button is-primary" href="/posts/create">Create new Post</a>
           </div>
         </div>
@@ -25,31 +25,43 @@
               <small><%- post._creator.username %></small> . <small><%- post.createdAt.toDateString() %></small>
               <br />
               <%- post.text.substring(0,180) %> <span>&hellip;</span> <a href="/posts/<%- post._id %>">Read More</a>
+              <br />
+              <small>Comments (<%- post._comments.length %>) · Likes (0)</small>
             </p>
           </div>
         <% }); %>
 
+        <% if( paginate.hasPreviousPages || paginate.hasNextPages(pageCount) ) { %>
         <div class="pagination">
-          <a class="pagination-previous" title="This is a first page" disabled>Previous</a>
-          <a class="pagination-next" title="There is only one page" disabled>Next</a>
+
+          <% if( paginate.hasPreviousPages ) { %>
+            <a class="pagination-previous" href="<%- paginate.href(true) %>">Previous</a>
+          <% } else { %>
+            <a class="pagination-previous" title="This is a first page" href="#" disabled>Previous</a>
+          <% } %>
+
+          <% if( paginate.hasNextPages(pageCount) ) { %>
+            <a class="pagination-next" href="<%- paginate.href() %>">Next</a>
+          <% } else { %>
+            <a class="pagination-next" title="There is only one page" disabled>Next</a>
+          <% } %>
+
+
           <ul class="pagination-list">
-            <li>
-              <a class="pagination-link is-current" href="/posts?page=1">1</a>
-            </li>
             <!-- <li>
-              <a class="pagination-link" href="#">2</a>
-            </li>
+              <a class="pagination-link is-current" href="/posts?page=1">1</a>
+            </li> -->
+            <% pages.forEach( (page) => { %>
             <li>
-              <a class="pagination-link" href="#">3</a>
+              <a class="pagination-link <%- currentPage == page.number ? ' is-current' : '' %>" href="<%- page.url %>"><%- page.number %></a>
             </li>
-            <li>
+            <% }) %>
+            <!-- <li>
               <span class="pagination-ellipsis">&hellip;&hellip;</span>
-            </li>
-            <li>
-              <a class="pagination-link" href="#">7</a>
             </li> -->
           </ul>
         </div>
+        <% } %>
 
       </div>
     </section>
