@@ -49,8 +49,6 @@ commentsController.destroy = (req, res) => {
     _creator: userId
   })
   .then( (result) => {
-    console.log('Comment is deleted');
-    console.log(result.toString() );
     req.session.flashMessage = {
       type: 'success',
       message: "Comment deleted successfully"
@@ -58,8 +56,6 @@ commentsController.destroy = (req, res) => {
     res.redirect('back');
   })
   .catch( (err) => {
-    console.log("Unable to delete the comment");
-    console.log(err.toString());
     req.session.flashMessage = {
       type: 'error',
       message: "Unable to delete the comment"

@@ -5,7 +5,10 @@ function isAuthenticated(req, res, next) {
   if( req.session && req.session.user ) {
     return next();
   }
-  req.session.flashMessage = "Please login to the website.";
+  req.session.flashMessage = {
+    type: 'message',
+    message: "Please login to the website to continue."
+  };
   res.redirect('/login');
 }
 

@@ -7,8 +7,7 @@ homeController.welcome = (req, res) => {
 }
 
 homeController.about = (req, res) => {
-  const data = { name: "Abbas" };
-  res.render('pages/about', data);
+  res.render('pages/about');
 }
 
 homeController.contact = (req, res) => {

@@ -12,13 +12,9 @@
     <section class="section">
       <div class="container">
         <%- include( "../partials/flashmessage", { flashMessage } ) %>
-        <div class="level">
-          <div class="level-left">
-          </div>
-          <div class="level-right">
-            <div class="level-item">
-              <a class="button is-primary" href="/posts/create">Create new Post</a>
-            </div>
+        <div class="container">
+          <div class="has-text-right has-text-centered-mobile">
+            <a class="button is-primary" href="/posts/create">Create new Post</a>
           </div>
         </div>
         <% typeof(posts) != "undefined" && posts.forEach( (post) => { %>
