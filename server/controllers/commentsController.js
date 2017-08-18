@@ -24,13 +24,49 @@ commentsController.store = (req, res) => {
           res.redirect('back');
       })
       .catch( (err) => {
-        req.session.flashMessage = err.message;
+        req.session.flashMessage = {
+          type: 'error',
+          message: err.message
+        };
         res.redirect('back');
       });
     }).catch( (err) => {
-      req.session.flashMessage = err.message;
+      req.session.flashMessage = {
+        type: 'error',
+        message: err.message
+      };
       res.redirect('back');
     });
+}
+
+commentsController.destroy = (req, res) => {
+
+  const commentId = req.params.commentId;
+  const userId = req.session.user._id;
+
+  db.Comment.findOneAndRemove({
+    _id: commentId,
+    _creator: userId
+  })
+  .then( (result) => {
+    console.log('Comment is deleted');
+    console.log(result.toString() );
+    req.session.flashMessage = {
+      type: 'success',
+      message: "Comment deleted successfully"
+    };
+    res.redirect('back');
+  })
+  .catch( (err) => {
+    console.log("Unable to delete the comment");
+    console.log(err.toString());
+    req.session.flashMessage = {
+      type: 'error',
+      message: "Unable to delete the comment"
+    };
+    res.redirect('back');
+  });
+
 }
 
 export default commentsController;

@@ -3,9 +3,7 @@ const homeController = {};
 import parseurl from 'parseurl';
 
 homeController.welcome = (req, res) => {
-  res.render('pages/home',{
-    
-  });
+  res.render('pages/home');
 }
 
 homeController.about = (req, res) => {

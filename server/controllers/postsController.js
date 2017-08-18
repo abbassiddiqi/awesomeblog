@@ -12,10 +12,13 @@ postsController.show = (req, res) => {
     'path': '_comments'
   })
   .then( (post ) => {
-    // res.status(200).json(post);
     res.render("posts/show", { post });
   })
   .catch( (err) => {
+    req.session.flashMessage = {
+      type: 'error',
+      message: err.message
+    };
     res.render("posts/show", {errMessage: err, post: null});
   });
 }
@@ -43,7 +46,10 @@ postsController.store = (req, res) => {
       res.redirect("/posts");
     })
     .catch( (err) => {
-      req.session.flashMessage = err.message;
+      req.session.flashMessage = {
+        type: 'error',
+        message: err.message
+      };
       res.redirect('back');
     });
 }
@@ -63,6 +69,10 @@ postsController.getAll = (req, res) => {
         res.render("posts/index",{posts: allPosts});
     })
     .catch( (err) => {
+      req.session.flashMessage = {
+        type: 'error',
+        message: err.message
+      };
       res.render("posts/index",{errMessage: err});
     });
 }

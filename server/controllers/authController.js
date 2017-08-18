@@ -10,7 +10,10 @@ authController.logout = (req, res) => {
   if( req.session && req.session.user ) {
     delete req.session.user;
     delete req.session.views;
-    req.session.flashMessage = "You have logged out successfully.";
+    req.session.flashMessage = {
+      type: 'message',
+      message: "You have logged out successfully."
+    };
   }
 
   res.redirect('/login');
@@ -18,7 +21,6 @@ authController.logout = (req, res) => {
 
 authController.authenticate = (req, res) => {
 
-  console.log('trying to authenticate');
   const {
     username,
     password
@@ -29,17 +31,26 @@ authController.authenticate = (req, res) => {
 
       if( user ) {
         req.session.user = user;
-        req.session.flashMessage = "You have successfully logged in";
+        req.session.views = {};
+        req.session.flashMessage = {
+          type: 'success',
+          message: "You have successfully logged in"
+        };
         res.redirect('/');
       } else {
-        req.session.flashMessage = "Incorrect Credentials";
+        req.session.flashMessage = {
+          type: 'error',
+          message: "Invalid Credentials"
+        };
         res.redirect('back');
       }
     })
     .catch( (err) => {
-      res.status(500).json({
-        errMessage: err.toString()
-      });
+      req.session.flashMessage = {
+        type: 'error',
+        message: err.message
+      };
+      res.redirect('back');
     });
 };
 

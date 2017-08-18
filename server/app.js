@@ -5,6 +5,7 @@ import path from 'path';
 import morgan from 'morgan';
 import session from 'express-session';
 import parseurl from 'parseurl';
+import methodOverride from 'method-override';
 
 import routes from './routes';
 import apiRoutes from './apiRoutes';
@@ -34,6 +35,7 @@ app.set('views', path.join(__dirname, '../views'));
 
 // Middleware
 
+app.use( methodOverride('_method') );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: true}) );
 app.use( morgan('dev') );
@@ -59,6 +61,12 @@ app.use( (req, res, next) => {
   const pathname = parseurl(req).pathname;
   req.session.views[pathname] = ( req.session.views[pathname] || 0 ) + 1;
 
+  next();
+});
+
+// Middleware to define flashMessage null
+app.use( (req, res, next) => {
+  res.locals.flashMessage = null;
   next();
 });
 

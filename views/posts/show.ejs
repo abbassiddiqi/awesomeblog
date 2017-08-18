@@ -13,6 +13,7 @@
   <div class="section">
     <% if (post !== undefined) { %>
     <div class="container">
+      <%- include( "../partials/flashMessage", { flashMessage } ) %>
       <p class="title is-3">
         <%- post.title %>
       </p>
@@ -76,10 +77,15 @@
           </div>
         </div>
         <div class="media-right">
-          <button class="delete"></button>
+          <% if( comment._creator.username == user.username ) { %>
+          <form method="get" action="/comments/<%- comment._id %>"
+            <input type="hidden" name="nothing" value="asdf" />
+            <button class="delete" type="submit"></button>
+          </form>
+          <% } %>
         </div>
       </article>
-      <% }); %>
+      <% } ) %>
 
     </div>
     <% } %>

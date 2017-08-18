@@ -1,0 +1,11 @@
+<% if( typeof flashMessage != "undefined" && flashMessage ) { %>
+<% const messageClass = {
+  success: 'is-success',
+  error: 'is-danger',
+  message: 'is-info'
+} %>
+<div class="notification <%- messageClass[flashMessage.type] %>">
+  <button class="delete"></button>
+  <%- flashMessage.message %>
+</div>
+<% } %>
