@@ -12,6 +12,9 @@ import moment from 'moment';
 import routes from './routes';
 import apiRoutes from './apiRoutes';
 
+import sessionManagementMW from './middlewares/sessionManagementMW';
+import pageVisitsMW from './middlewares/pageVisitsMW';
+
 // Configure Database here
 
 mongoose.Promise = global.Promise;
@@ -55,50 +58,18 @@ app.use( express.static( path.join(__dirname,'../public') ) );
 app.locals.moment = moment;
 app.locals.shortDateFormat = "ddd @ h:mmA";
 
-// Middleware to store page visit counts in session variable
-app.use( (req, res, next) => {
-
-  if( !req.session )
-    throw Error('No session initialized');
-
-  // set views variable
-  if( !req.session.views ) {
-    req.session.views = {};
-  }
-
-  const pathname = parseurl(req).pathname;
-  req.session.views[pathname] = ( req.session.views[pathname] || 0 ) + 1;
-
-  next();
-});
-
 // Middleware to define flashMessage null
 app.use( (req, res, next) => {
   res.locals.flashMessage = null;
   next();
 });
 
+// Middleware to store page visit counts in session variable
+app.use( pageVisitsMW );
+
 // Middleware to pass session variables to the response
-app.use( (req, res, next) => {
-  if( req.session ) {
+app.use( sessionManagementMW );
 
-    if( req.session.flashMessage ) {
-      res.locals.flashMessage = req.session.flashMessage;
-      delete req.session.flashMessage;
-    }
-
-    if( req.session.user ) {
-      res.locals.user = req.session.user;
-    } else {
-      res.locals.user = null;
-    }
-
-    if( req.session.views ) {
-      res.locals.pvCount = req.session.views[parseurl(req).pathname];
-    }
-  }
-  next();
-});
 
 // Routes
 app.use('/api', apiRoutes);
