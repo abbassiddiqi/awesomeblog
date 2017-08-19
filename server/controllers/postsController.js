@@ -98,4 +98,30 @@ postsController.getAll = (req, res) => {
     });
 }
 
+postsController.destroy = (req, res) => {
+  const postId = req.params.postId;
+  const userId = req.session.user._id;
+
+  db.Post.findOneAndRemove({
+    _id: postId,
+    _creator: userId
+  })
+  .then( (post) => {
+    console.log("Removed the post");
+    req.session.flashMessage = {
+      type: "success",
+      message: "Post deleted successfully"
+    };
+    res.redirect('/posts');
+  })
+  .catch( (err) => {
+    req.session.flashMessage = {
+      type: "error",
+      message: "Unable to delete the post"
+    };
+    console.log(err);
+    res.redirect('back');
+  });
+}
+
 export default postsController;

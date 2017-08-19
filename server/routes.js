@@ -41,9 +41,10 @@ routes.get('/posts', isAuthenticated, postsController.getAll);
 routes.get('/posts/create', isAuthenticated, postsController.create);
 routes.post('/posts/:postId/comment', isAuthenticated, commentsController.store);
 routes.get('/posts/:postId', isAuthenticated, postsController.show);
+routes.post('/posts/:postId', isAuthenticated, postsController.destroy);
 
 // Comment Routes
 routes.post('/comments', isAuthenticated, commentsController.store);
-routes.get('/comments/:commentId', isAuthenticated, commentsController.destroy);
+routes.post('/comments/:commentId', isAuthenticated, commentsController.destroy);
 
 export default routes;

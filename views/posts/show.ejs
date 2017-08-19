@@ -28,6 +28,14 @@
       <div class="content">
         <%- post.text %>
       </div>
+      <% if( post._creator.username == user.username ) { %>
+      <div class="content has-text-right">
+        <form method="post" action="/posts/<%- post._id %>">
+          <input type="hidden" name="_method" value="DELETE" />
+          <button type="submit" class="button is-danger">Delete Post</button>
+        </form>
+      </div>
+      <% } %>
     </div>
 
     <br />
@@ -78,7 +86,7 @@
         </div>
         <div class="media-right">
           <% if( comment._creator.username == user.username ) { %>
-          <form method="get" action="/comments/<%- comment._id %>"
+          <form method="post" action="/comments/<%- comment._id %>"
             <input type="hidden" name="nothing" value="asdf" />
             <button class="delete" type="submit"></button>
           </form>
